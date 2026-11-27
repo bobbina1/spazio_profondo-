@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0d16">
+<title>Spazio Profondo — L'universo è più vicino di quanto immagini</title>
+
+<!-- Fraunces: unico carattere caricato da remoto, con fallback locale
+     nello stack di --f-display se la rete non è disponibile. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,420;0,9..144,560;0,9..144,620;1,9..144,500&display=swap">
+
+<meta name="description" content="Spazio Profondo: un viaggio interattivo nell'universo. Sistema Solare interattivo, missioni spaziali, fenomeni astronomici, quiz e giochi scientifici, con fonti NASA ed ESA.">
+<meta name="author" content="Spazio Profondo">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="./">
+
+<!-- Open Graph / condivisione -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Spazio Profondo">
+<meta property="og:locale" content="it_IT">
+<meta property="og:title" content="Spazio Profondo — L'universo è più vicino di quanto immagini">
+<meta property="og:description" content="Sistema Solare interattivo, missioni spaziali, fenomeni astronomici, quiz e giochi scientifici. Contenuti verificati su fonti NASA ed ESA.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Spazio Profondo">
+<meta name="twitter:description" content="Un viaggio interattivo nell'universo, con contenuti verificati su fonti ufficiali.">
+
+<!-- Favicon generata inline: nessuna richiesta aggiuntiva -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='34%25' cy='30%25'%3E%3Cstop offset='0' stop-color='%23cfe0ff'/%3E%3Cstop offset='55%25' stop-color='%233b74c4'/%3E%3Cstop offset='100%25' stop-color='%230a1733'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='32' height='32' fill='%230a0d16'/%3E%3Ccircle cx='16' cy='15' r='9' fill='url(%23g)'/%3E%3Cellipse cx='16' cy='15' rx='14' ry='4.6' fill='none' stroke='%23c9a35f' stroke-opacity='.7' stroke-width='1.3' transform='rotate(-20 16 15)'/%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="./assets/css/tokens.css">
+<link rel="stylesheet" href="./assets/css/base.css">
+<link rel="stylesheet" href="./assets/css/components.css">
+<link rel="stylesheet" href="./assets/css/modules.css">
+
+<!-- Dati strutturati di base; il router li aggiorna per ogni sezione -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Spazio Profondo",
+  "inLanguage": "it",
+  "description": "Divulgazione astronomica interattiva: Sistema Solare, missioni spaziali, fenomeni astronomici, quiz e giochi scientifici.",
+  "publisher": { "@type": "Organization", "name": "Spazio Profondo" }
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#view">Salta al contenuto</a>
+
+<!-- Sfondo: stelle animate su canvas + strati di nebulosa -->
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="bg-nebula" aria-hidden="true"></div>
+<div class="bg-grain" aria-hidden="true"></div>
+
+<div class="app">
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="#/" aria-label="Spazio Profondo, vai alla home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text">
+          <b>Spazio Profondo</b>
+          <span>divulgazione astronomica</span>
+        </span>
+      </a>
+
+      <nav class="nav__links" aria-label="Navigazione principale">
+        <a class="nav__link" href="#/esplora" data-nav="esplora">Esplora l'universo</a>
+        <a class="nav__link" href="#/sistema-solare" data-nav="sistema-solare">Sistema Solare</a>
+        <a class="nav__link" href="#/luna" data-nav="luna">Luna</a>
+        <a class="nav__link" href="#/missioni" data-nav="missioni">Missioni</a>
+        <a class="nav__link" href="#/fenomeni" data-nav="fenomeni">Fenomeni</a>
+        <a class="nav__link" href="#/contenuti" data-nav="contenuti">Contenuti</a>
+        <a class="nav__link" href="#/quiz" data-nav="quiz">Quiz</a>
+        <a class="nav__link" href="#/laboratorio" data-nav="laboratorio">Laboratorio</a>
+      </nav>
+
+      <button class="nav__burger" type="button" aria-expanded="false"
+              aria-controls="menu-mobile" aria-label="Apri il menu di navigazione">
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="menu-mobile">
+    <div class="container">
+      <nav class="mobile-menu__list" aria-label="Navigazione mobile">
+        <a class="mobile-menu__link" href="#/">Home <span>00</span></a>
+        <a class="mobile-menu__link" href="#/esplora">Esplora l'universo <span>01</span></a>
+        <a class="mobile-menu__link" href="#/sistema-solare">Sistema Solare <span>02</span></a>
+        <a class="mobile-menu__link" href="#/luna">Luna e satelliti <span>03</span></a>
+        <a class="mobile-menu__link" href="#/missioni">Missioni spaziali <span>04</span></a>
+        <a class="mobile-menu__link" href="#/fenomeni">Fenomeni astronomici <span>05</span></a>
+        <a class="mobile-menu__link" href="#/contenuti">Video e contenuti <span>06</span></a>
+        <a class="mobile-menu__link" href="#/quiz">Quiz <span>07</span></a>
+        <a class="mobile-menu__link" href="#/laboratorio">Laboratorio Spaziale <span>08</span></a>
+        <a class="mobile-menu__link" href="#/fonti">Fonti e metodo <span>09</span></a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="view" tabindex="-1">
+    <!-- Contenuto iniziale: sostituito dal router. Serve anche come
+         fallback leggibile se JavaScript non è disponibile. -->
+    <section class="section container" style="min-height:70vh;display:grid;place-items:center">
+      <div style="text-align:center;display:grid;gap:var(--s-5);justify-items:center">
+        <span class="spinner" aria-hidden="true"></span>
+        <h1 class="display" style="font-size:clamp(2rem,6vw,3.4rem)">SPAZIO PROFONDO</h1>
+        <p class="lead">L'universo è più vicino di quanto immagini.</p>
+        <noscript>
+          <div class="note" style="text-align:left;max-width:60ch">
+            <span class="note__icon" aria-hidden="true">⚠</span>
+            <div>Questo sito usa JavaScript per il modello interattivo del Sistema Solare,
+            le simulazioni, il quiz e i giochi. Attivalo per accedere a tutti i contenuti.
+            I testi scientifici e le fonti restano comunque consultabili sui portali ufficiali
+            di <a href="https://science.nasa.gov/">NASA Science</a> e
+            <a href="https://www.esa.int/">ESA</a>.</div>
+          </div>
+        </noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__col">
+          <a class="brand" href="#/">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text"><b>Spazio Profondo</b><span>divulgazione astronomica</span></span>
+          </a>
+          <p class="card__text">L'universo è più vicino di quanto immagini.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Esplora</h4>
+          <a href="#/esplora">Esplora l'universo</a>
+          <a href="#/sistema-solare">Sistema Solare</a>
+          <a href="#/luna">Luna e satelliti</a>
+          <a href="#/missioni">Missioni spaziali</a>
+          <a href="#/fenomeni">Fenomeni astronomici</a>
+        </div>
+        <div class="footer__col">
+          <h4>Interagisci</h4>
+          <a href="#/quiz">Quiz Spazio Profondo</a>
+          <a href="#/laboratorio">Laboratorio Spaziale</a>
+          <a href="#/contenuti">Video e contenuti</a>
+        </div>
+        <div class="footer__col">
+          <h4>Fonti scientifiche</h4>
+          <a href="#/fonti">Fonti e metodo</a>
+          <a href="https://science.nasa.gov/" target="_blank" rel="noopener noreferrer">NASA Science ↗</a>
+          <a href="https://www.esa.int/" target="_blank" rel="noopener noreferrer">ESA ↗</a>
+          <a href="https://www.jpl.nasa.gov/" target="_blank" rel="noopener noreferrer">NASA JPL ↗</a>
+          <a href="https://www.eso.org/" target="_blank" rel="noopener noreferrer">ESO ↗</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Spazio Profondo · Contenuti basati su fonti scientifiche ufficiali</span>
+        <span>Illustrazioni generate graficamente · nessuna immagine protetta da copyright riprodotta</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script type="module" src="./assets/js/main.js"></script>
+</body>
+</html>

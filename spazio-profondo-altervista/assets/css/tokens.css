@@ -1,0 +1,92 @@
+/* ============================================================
+   SPAZIO PROFONDO — Design tokens
+   Blu notte disciplinato: un solo accento elettrico per l'azione,
+   un contrappunto caldo (ottone) per l'enfasi editoriale. Niente
+   arcobaleno di accenti paralleli: i colori dei pianeti restano
+   dati, non decorazione.
+   ============================================================ */
+
+:root {
+  /* --- Colore: fondali --------------------------------------- */
+  --c-void:        #0a0d16;   /* fondo pagina                    */
+  --c-night:       #0e1322;   /* sezioni alternate                */
+  --c-surface:     #121829;   /* card                            */
+  --c-surface-2:   #171f36;   /* card in hover / nested          */
+  --c-line:        #263047;   /* bordi                           */
+  --c-line-soft:   rgba(190, 200, 224, 0.09);
+
+  /* --- Colore: testo ----------------------------------------- */
+  --c-text:        #edf0f7;
+  --c-text-dim:    #9fabc6;   /* ~7.5:1 su --c-void              */
+  --c-text-faint:  #6d7993;
+
+  /* --- Colore: accenti (disciplina: uno elettrico, uno caldo) - */
+  --c-accent:      #4f8fe0;   /* azzurro strumentazione, l'unico accento d'azione */
+  --c-accent-dim:  #2f5da3;
+  --c-warm:        #c9a35f;   /* ottone: enfasi editoriale rara, mai su pulsanti */
+  --c-ok:          #55c98a;
+  --c-err:         #ec6b7d;
+
+  /* colori informativi (dati, non decorazione): Sole, Marte ecc.
+     restano nei dati dei pianeti, non qui. */
+
+  /* --- Gradienti (usati solo nell'hero e nel bagliore di sfondo) */
+  --g-accent:  linear-gradient(95deg, var(--c-accent), #7fb0ef);
+  --g-glow:    radial-gradient(circle at 50% 50%, rgba(79,143,224,.20), transparent 70%);
+  --g-nebula:  radial-gradient(55% 48% at 18% 16%, rgba(79,143,224,.14), transparent 60%),
+               radial-gradient(48% 55% at 88% 28%, rgba(201,163,95,.07), transparent 60%);
+
+  /* --- Tipografia -------------------------------------------- */
+  /* Serif editoriale per titoli: richiama gli atlanti celesti incisi,
+     non il geometrico-sans da SaaS. Il sans resta per dati e interfaccia. */
+  --f-display: "Fraunces", "Iowan Old Style", "Georgia", serif;
+  --f-sans: "Inter", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+            "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "SF Mono", ui-monospace, "JetBrains Mono", "Fira Code",
+            Menlo, Consolas, monospace;
+
+  /* scala fluida: clamp(min, preferito, max) */
+  --t-display: clamp(2.6rem, 7.4vw, 5.6rem);
+  --t-h1:      clamp(2rem, 4.6vw, 3.4rem);
+  --t-h2:      clamp(1.5rem, 3vw, 2.2rem);
+  --t-h3:      clamp(1.18rem, 1.8vw, 1.45rem);
+  --t-h4:      1.04rem;
+  --t-body:    1rem;
+  --t-small:   .875rem;
+  --t-micro:   .78rem;
+
+  --lh-tight: 1.08;
+  --lh-head:  1.2;
+  --lh-body:  1.66;
+
+  /* --- Spazio (scala 4px) ------------------------------------ */
+  --s-1: .25rem;  --s-2: .5rem;   --s-3: .75rem;  --s-4: 1rem;
+  --s-5: 1.5rem;  --s-6: 2rem;    --s-7: 3rem;    --s-8: 4rem;
+  --s-9: 6rem;    --s-10: 8rem;
+
+  /* --- Forma: angoli piu' discreti, meno "app bolla" ---------- */
+  --r-sm: 6px;  --r-md: 10px;  --r-lg: 14px;  --r-pill: 999px;
+
+  /* --- Elevazione: ombre sobrie, niente bagliore colorato ----- */
+  --sh-1: 0 1px 2px rgba(0,0,0,.35);
+  --sh-2: 0 8px 24px -14px rgba(0,0,0,.6);
+  --sh-3: 0 20px 48px -24px rgba(0,0,0,.7);
+
+  /* --- Movimento --------------------------------------------- */
+  --e-out:   cubic-bezier(.22, 1, .36, 1);     /* decelerazione   */
+  --e-inout: cubic-bezier(.65, .05, .36, 1);
+  --e-spring:cubic-bezier(.34, 1.56, .64, 1);
+  --d-fast: 160ms;  --d-mid: 320ms;  --d-slow: 620ms;
+
+  /* --- Layout ------------------------------------------------ */
+  --w-page: 1240px;
+  --w-text: 70ch;
+  --h-nav:  68px;
+  --z-bg: 0; --z-content: 1; --z-nav: 50; --z-menu: 60; --z-modal: 70;
+}
+
+/* Riduzione del movimento: azzera le durate e disattiva il parallasse.
+   Il JS legge anche la stessa media query per fermare il canvas. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --d-fast: 1ms; --d-mid: 1ms; --d-slow: 1ms; }
+}
